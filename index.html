@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayEase QR Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>PayEase QR Generator</h1>
+
+    <button class="button" onclick="showStaticInput()">Generate Static QR</button>
+    <button class="button" onclick="showDynamicInput()">Generate Dynamic QR</button>
+
+    <div id="input-section" class="hidden">
+        <div class="input-container">
+            <input type="text" id="upi-input" placeholder="Enter UPI ID or Phone Number">
+            <span class="mic-icon" onclick="startSpeechRecognition('upi-input')">🎤</span>
+        </div>
+
+        <div class="input-container hidden" id="amount-container">
+            <input type="text" id="amount" placeholder="Enter amount">
+            <span class="mic-icon" onclick="startSpeechRecognition('amount')">🎤</span>
+        </div>
+
+        <div class="input-container">
+            <select id="payment-method" onchange="updatePaymentMethod()">
+                <option value="">Select Payment Method</option>
+                <option value="paytm">Paytm</option>
+                <option value="phonepe">PhonePe</option>
+            </select>
+            <div class="hover-message" id="hover-message">
+                If you are paying, enter the phone number or UPI ID only if the person uses this method. If you are receiving, enter their UPI ID.
+            </div>
+        </div>
+
+        <button class="button" id="generate-btn" onclick="generateQR()">Generate QR</button>
+    </div>
+
+    <div class="qr-container" id="qr-container">
+        <div id="qrcode"></div>
+        <button class="download-btn hidden" id="download-btn" onclick="downloadQR()">📥 Download</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
